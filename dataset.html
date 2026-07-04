@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Dataset documentation for the NSL-KDD final-year intrusion detection project.">
+    <title>Dataset | IDS Research Console</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <script src="assets/js/app.js" defer></script>
+  </head>
+  <body data-page="dataset">
+    <header class="site-header">
+      <a class="brand" href="index.html" aria-label="NSL-KDD IDS Research Console home">
+        <span class="brand-mark">ID</span>
+        <span>
+          <strong>IDS Research Console</strong>
+          <small>NSL-KDD final-year project</small>
+        </span>
+      </a>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="index.html">Overview</a>
+        <a href="test.html">Test Model</a>
+        <a href="dataset.html">Dataset</a>
+        <a href="results.html">Results</a>
+        <a href="methodology.html">Methodology</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="page-intro">
+        <p class="eyebrow">Dataset information</p>
+        <h1>NSL-KDD intrusion detection benchmark</h1>
+        <p>The study uses NSL-KDD train and test files with binary-label ARFF variants, attack-type TXT variants, and reduced subsets for smaller experiments.</p>
+      </section>
+
+      <section class="content-band tight">
+        <div class="section-heading">
+          <p class="eyebrow">Supplied files</p>
+          <h2>Dataset package map</h2>
+        </div>
+        <div class="file-grid">
+          <article>
+            <h3>KDDTrain+.ARFF</h3>
+            <p>Full train set with binary labels in ARFF format.</p>
+          </article>
+          <article>
+            <h3>KDDTrain+.TXT</h3>
+            <p>Full train set including attack-type labels and difficulty level in CSV format.</p>
+          </article>
+          <article>
+            <h3>KDDTrain+_20Percent.ARFF</h3>
+            <p>20 percent subset of the full ARFF training set.</p>
+          </article>
+          <article>
+            <h3>KDDTrain+_20Percent.TXT</h3>
+            <p>20 percent subset of the full TXT training set.</p>
+          </article>
+          <article>
+            <h3>KDDTest+.ARFF</h3>
+            <p>Full test set with binary labels in ARFF format.</p>
+          </article>
+          <article>
+            <h3>KDDTest+.TXT</h3>
+            <p>Full test set including attack-type labels and difficulty level in CSV format.</p>
+          </article>
+          <article>
+            <h3>KDDTest-21.ARFF</h3>
+            <p>Subset excluding records with difficulty level 21 out of 21.</p>
+          </article>
+          <article>
+            <h3>KDDTest-21.TXT</h3>
+            <p>TXT subset excluding records with difficulty level 21 out of 21.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="split-band reverse">
+        <div>
+          <p class="eyebrow">Why NSL-KDD</p>
+          <h2>Improvements over KDD'99</h2>
+          <p class="body-copy">NSL-KDD reduces duplicate and redundant records, giving classifiers a fairer evaluation surface and making full-set experiments practical for comparative research.</p>
+        </div>
+        <div class="insight-list">
+          <article>
+            <strong>No redundant train records</strong>
+            <p>Classifiers are less biased toward frequent duplicated records.</p>
+          </article>
+          <article>
+            <strong>No duplicate test records</strong>
+            <p>Methods are not rewarded simply for detecting repeated samples well.</p>
+          </article>
+          <article>
+            <strong>Balanced difficulty sampling</strong>
+            <p>Selected records vary by difficulty level, widening performance differences between learning techniques.</p>
+          </article>
+          <article>
+            <strong>Reasonable experiment size</strong>
+            <p>Complete train and test experiments are affordable, improving consistency across research works.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="content-band">
+        <div class="section-heading">
+          <p class="eyebrow">Attack taxonomy</p>
+          <h2>Five-class target mapping</h2>
+        </div>
+        <div class="taxonomy-grid">
+          <article class="taxonomy-card dos">
+            <h3>DoS</h3>
+            <p>Denial-of-service traffic such as neptune, smurf, back, land, pod, teardrop, apache2, mailbomb, processtable, udpstorm, and worm.</p>
+          </article>
+          <article class="taxonomy-card normal">
+            <h3>Normal</h3>
+            <p>Benign network connections that do not belong to an attack signature group.</p>
+          </article>
+          <article class="taxonomy-card probe">
+            <h3>Probe</h3>
+            <p>Reconnaissance activity such as ipsweep, mscan, nmap, portsweep, saint, and satan.</p>
+          </article>
+          <article class="taxonomy-card r2l">
+            <h3>R2L</h3>
+            <p>Remote-to-local attacks such as guess_passwd, ftp_write, imap, phf, multihop, warezmaster, snmpguess, and xlock.</p>
+          </article>
+          <article class="taxonomy-card u2r">
+            <h3>U2R</h3>
+            <p>User-to-root attempts such as buffer_overflow, loadmodule, perl, rootkit, sqlattack, ps, and xterm.</p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <span>NSL-KDD dataset documentation</span>
+      <span>Train: 125,973 records | Test: 22,544 records</span>
+    </footer>
+  </body>
+</html>
+

@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Model performance metrics and research plots for the NSL-KDD intrusion detection project.">
+    <title>Results | IDS Research Console</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <script src="assets/js/app.js" defer></script>
+    <script src="assets/js/results.js" defer></script>
+  </head>
+  <body data-page="results">
+    <header class="site-header">
+      <a class="brand" href="index.html" aria-label="NSL-KDD IDS Research Console home">
+        <span class="brand-mark">ID</span>
+        <span>
+          <strong>IDS Research Console</strong>
+          <small>NSL-KDD final-year project</small>
+        </span>
+      </a>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="index.html">Overview</a>
+        <a href="test.html">Test Model</a>
+        <a href="dataset.html">Dataset</a>
+        <a href="results.html">Results</a>
+        <a href="methodology.html">Methodology</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="page-intro compact">
+        <p class="eyebrow">Evaluation</p>
+        <h1>Model comparison and visual evidence</h1>
+        <p>Summary metrics are loaded from the exported research reports, while the gallery presents the saved high-resolution plots.</p>
+      </section>
+
+      <section class="content-band tight">
+        <div class="section-heading">
+          <p class="eyebrow">Metrics</p>
+          <h2>Summary leaderboard</h2>
+        </div>
+        <div id="metricsGrid" class="metrics-grid"></div>
+        <div class="table-wrap">
+          <table id="metricsTable">
+            <thead>
+              <tr>
+                <th>Model</th>
+                <th>Accuracy</th>
+                <th>Precision macro</th>
+                <th>Recall macro</th>
+                <th>F1 macro</th>
+                <th>AP micro</th>
+                <th>ROC-AUC micro</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="split-band">
+        <div>
+          <p class="eyebrow">Reading the results</p>
+          <h2>Different models emphasize different detection goals</h2>
+          <p class="body-copy">The CNN-LSTM recorded the strongest single-model accuracy, XGBoost delivered the strongest micro ROC-AUC, and the averaged ensemble improved macro F1 relative to the individual XGBoost and autoencoder outputs.</p>
+        </div>
+        <div class="chart-panel">
+          <h3>Accuracy by model</h3>
+          <div id="accuracyBars" class="bar-chart"></div>
+        </div>
+      </section>
+
+      <section class="content-band">
+        <div class="section-heading">
+          <p class="eyebrow">Visualisations</p>
+          <h2>Saved research plots</h2>
+        </div>
+        <div class="gallery-grid" id="galleryGrid">
+          <button class="plot-card" data-image="roc_comparison.png">
+            <img src="assets/images/roc_comparison.png" alt="ROC comparison plot">
+            <span>ROC comparison</span>
+          </button>
+          <button class="plot-card" data-image="precision_recall_comparison.png">
+            <img src="assets/images/precision_recall_comparison.png" alt="Precision recall comparison plot">
+            <span>Precision recall comparison</span>
+          </button>
+          <button class="plot-card" data-image="f1_confidence_comparison.png">
+            <img src="assets/images/f1_confidence_comparison.png" alt="F1 confidence comparison plot">
+            <span>F1 confidence comparison</span>
+          </button>
+          <button class="plot-card" data-image="precision_confidence_comparison.png">
+            <img src="assets/images/precision_confidence_comparison.png" alt="Precision confidence comparison plot">
+            <span>Precision confidence comparison</span>
+          </button>
+          <button class="plot-card" data-image="recall_confidence_comparison.png">
+            <img src="assets/images/recall_confidence_comparison.png" alt="Recall confidence comparison plot">
+            <span>Recall confidence comparison</span>
+          </button>
+          <button class="plot-card" data-image="confusion_matrix_ensemble_avg.png">
+            <img src="assets/images/confusion_matrix_ensemble_avg.png" alt="Ensemble average confusion matrix">
+            <span>Ensemble confusion matrix</span>
+          </button>
+          <button class="plot-card" data-image="confusion_matrix_keras_cnn.png">
+            <img src="assets/images/confusion_matrix_keras_cnn.png" alt="Keras CNN confusion matrix">
+            <span>CNN-LSTM confusion matrix</span>
+          </button>
+          <button class="plot-card" data-image="confusion_matrix_xgb_final.png">
+            <img src="assets/images/confusion_matrix_xgb_final.png" alt="Final XGBoost confusion matrix">
+            <span>XGBoost final confusion matrix</span>
+          </button>
+          <button class="plot-card" data-image="confusion_matrix_autoencoder_binary.png">
+            <img src="assets/images/confusion_matrix_autoencoder_binary.png" alt="Autoencoder binary confusion matrix">
+            <span>Autoencoder binary matrix</span>
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <div class="modal" id="plotModal" aria-hidden="true" role="dialog" aria-label="Expanded plot">
+      <div class="modal-surface">
+        <button class="modal-close" type="button" id="closeModal" aria-label="Close expanded plot">Close</button>
+        <img id="modalImage" alt="">
+      </div>
+    </div>
+
+    <footer class="site-footer">
+      <span>Metrics from exported JSON reports</span>
+      <span>Plots from the visualisations folder</span>
+    </footer>
+  </body>
+</html>
+

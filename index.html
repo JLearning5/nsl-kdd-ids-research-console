@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Final-year NSL-KDD intrusion detection research showcase and browser-based model testing console.">
+    <title>NSL-KDD IDS Research Console</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <script src="assets/js/app.js" defer></script>
+  </head>
+  <body data-page="overview">
+    <header class="site-header">
+      <a class="brand" href="index.html" aria-label="NSL-KDD IDS Research Console home">
+        <span class="brand-mark">ID</span>
+        <span>
+          <strong>IDS Research Console</strong>
+          <small>NSL-KDD final-year project</small>
+        </span>
+      </a>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="index.html">Overview</a>
+        <a href="test.html">Test Model</a>
+        <a href="dataset.html">Dataset</a>
+        <a href="results.html">Results</a>
+        <a href="methodology.html">Methodology</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero-band">
+        <div class="hero-copy">
+          <p class="eyebrow">Network intrusion detection research</p>
+          <h1>NSL-KDD Intrusion Detection Console</h1>
+          <p class="hero-lede">A multipage research app for presenting the dataset, explaining the modelling pipeline, comparing results, and testing the saved XGBoost classifier directly in the browser.</p>
+          <div class="action-row">
+            <a class="button primary" href="test.html">Open Model Lab</a>
+            <a class="button secondary" href="results.html">View Results</a>
+          </div>
+        </div>
+        <div class="hero-visual" aria-label="Research performance preview">
+          <div class="visual-toolbar">
+            <span>ROC comparison</span>
+            <span>5 classes</span>
+          </div>
+          <img src="assets/images/roc_comparison.png" alt="ROC comparison chart for the trained intrusion detection models">
+        </div>
+      </section>
+
+      <section class="metric-strip" aria-label="Project highlights">
+        <article>
+          <span class="metric-value" id="overview-best-accuracy">81.17%</span>
+          <span class="metric-label">Best single-model accuracy</span>
+        </article>
+        <article>
+          <span class="metric-value">122</span>
+          <span class="metric-label">Encoded features</span>
+        </article>
+        <article>
+          <span class="metric-value">5</span>
+          <span class="metric-label">Attack categories</span>
+        </article>
+        <article>
+          <span class="metric-value">0.9570</span>
+          <span class="metric-label">XGBoost micro ROC-AUC</span>
+        </article>
+      </section>
+
+      <section class="content-band">
+        <div class="section-heading">
+          <p class="eyebrow">Research surface</p>
+          <h2>Built for testing, evidence, and presentation</h2>
+        </div>
+        <div class="feature-grid">
+          <article class="feature-card">
+            <span class="feature-kicker">Inference</span>
+            <h3>Browser-side XGBoost tester</h3>
+            <p>The model lab loads the saved XGBoost JSON artifact and the fitted preprocessing metadata, then converts NSL-KDD traffic values into the same 122-feature vector used during training.</p>
+          </article>
+          <article class="feature-card">
+            <span class="feature-kicker">Evaluation</span>
+            <h3>Comparison-ready results</h3>
+            <p>Metrics and high-resolution plots are organized around XGBoost, CNN-LSTM, autoencoder, and ensemble variants so reviewers can inspect performance from multiple angles.</p>
+          </article>
+          <article class="feature-card">
+            <span class="feature-kicker">Dataset</span>
+            <h3>NSL-KDD context</h3>
+            <p>The dataset page documents the supplied files, binary and attack-type label variants, and the key improvements over the original KDD'99 benchmark.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="split-band">
+        <div>
+          <p class="eyebrow">Pipeline</p>
+          <h2>From raw traffic records to model artifacts</h2>
+          <p class="body-copy">The project maps attacks into DoS, Probe, R2L, U2R, and Normal classes; one-hot encodes protocol, service, and flag fields; scales all encoded features; and evaluates multiple learning approaches against the full NSL-KDD test set.</p>
+        </div>
+        <ol class="timeline">
+          <li>
+            <span>01</span>
+            <strong>Load NSL-KDD train and test files</strong>
+            <p>125,973 train records and 22,544 test records with 41 raw traffic features.</p>
+          </li>
+          <li>
+            <span>02</span>
+            <strong>Encode and scale</strong>
+            <p>Categorical fields become one-hot columns, producing 122 model-ready features.</p>
+          </li>
+          <li>
+            <span>03</span>
+            <strong>Train and compare</strong>
+            <p>XGBoost cross-validation, final XGBoost, CNN-LSTM, autoencoder, and averaged ensemble outputs are evaluated.</p>
+          </li>
+          <li>
+            <span>04</span>
+            <strong>Deploy free static app</strong>
+            <p>The web app uses static assets only, keeping hosting compatible with free tiers and no paid inference services.</p>
+          </li>
+        </ol>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <span>Final-year research project showcase</span>
+      <span>No paid hosting or inference service required</span>
+    </footer>
+  </body>
+</html>
+

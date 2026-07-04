@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Client-side model testing lab for the saved NSL-KDD XGBoost intrusion detection classifier.">
+    <title>Test Model | IDS Research Console</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <script src="assets/js/app.js" defer></script>
+    <script src="assets/js/model-tester.js" defer></script>
+  </head>
+  <body data-page="test">
+    <header class="site-header">
+      <a class="brand" href="index.html" aria-label="NSL-KDD IDS Research Console home">
+        <span class="brand-mark">ID</span>
+        <span>
+          <strong>IDS Research Console</strong>
+          <small>NSL-KDD final-year project</small>
+        </span>
+      </a>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="index.html">Overview</a>
+        <a href="test.html">Test Model</a>
+        <a href="dataset.html">Dataset</a>
+        <a href="results.html">Results</a>
+        <a href="methodology.html">Methodology</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="page-intro compact">
+        <p class="eyebrow">Model testing lab</p>
+        <h1>Run the saved final XGBoost classifier</h1>
+        <p>The tester embeds the trained XGBoost artifact and fitted preprocessing state for static, free hosting. CNN-LSTM and ensemble outputs are presented on the results page.</p>
+      </section>
+
+      <section class="lab-layout">
+        <div class="control-panel">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">Traffic profile</p>
+              <h2>NSL-KDD record</h2>
+            </div>
+            <div id="modelStatus" class="status-pill">Loading model</div>
+          </div>
+          <div class="preset-bar" id="presetBar" aria-label="Preset traffic records"></div>
+          <form id="trafficForm" class="traffic-form" autocomplete="off"></form>
+        </div>
+
+        <aside class="result-panel" aria-live="polite">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">Prediction</p>
+              <h2 id="predictedClass">Waiting</h2>
+            </div>
+            <span class="status-pill success" id="encodedCount">122 features</span>
+          </div>
+
+          <div class="risk-dial" id="riskDial">
+            <span id="riskValue">0%</span>
+            <small>Threat probability</small>
+          </div>
+
+          <div class="probability-list" id="probabilityList"></div>
+
+          <div class="explain-box">
+            <h3>Model evidence</h3>
+            <dl id="evidenceList">
+              <div>
+                <dt>Artifact</dt>
+                <dd>Final XGBoost softprob model</dd>
+              </div>
+              <div>
+                <dt>Classes</dt>
+                <dd>DoS, Normal, Probe, R2L, U2R</dd>
+              </div>
+              <div>
+                <dt>Preprocessing</dt>
+                <dd>One-hot encoding plus MinMax scaling</dd>
+              </div>
+            </dl>
+          </div>
+        </aside>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <span>Client-side inference from saved research artifacts</span>
+      <span>No paid model API</span>
+    </footer>
+  </body>
+</html>
+

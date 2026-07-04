@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Research methodology and deployment notes for the NSL-KDD intrusion detection final-year project.">
+    <title>Methodology | IDS Research Console</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <script src="assets/js/app.js" defer></script>
+  </head>
+  <body data-page="methodology">
+    <header class="site-header">
+      <a class="brand" href="index.html" aria-label="NSL-KDD IDS Research Console home">
+        <span class="brand-mark">ID</span>
+        <span>
+          <strong>IDS Research Console</strong>
+          <small>NSL-KDD final-year project</small>
+        </span>
+      </a>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="index.html">Overview</a>
+        <a href="test.html">Test Model</a>
+        <a href="dataset.html">Dataset</a>
+        <a href="results.html">Results</a>
+        <a href="methodology.html">Methodology</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="page-intro">
+        <p class="eyebrow">Research methodology</p>
+        <h1>XGBoost, CNN-LSTM, autoencoder, and ensemble workflow</h1>
+        <p>The exported notebook trains several models, stores reproducible preprocessing objects, and saves reports that this app reads directly.</p>
+      </section>
+
+      <section class="content-band tight">
+        <div class="method-grid">
+          <article class="method-card">
+            <span>01</span>
+            <h2>Preprocessing</h2>
+            <p>Original attack labels are mapped into five classes. The attack and difficulty columns are removed from the feature matrix, while protocol type, service, and flag are one-hot encoded.</p>
+          </article>
+          <article class="method-card">
+            <span>02</span>
+            <h2>XGBoost foundation</h2>
+            <p>A multi-class softprob XGBoost model is trained with stratified 5-fold cross-validation. The final model is also trained on the full training split.</p>
+          </article>
+          <article class="method-card">
+            <span>03</span>
+            <h2>Stacked deep input</h2>
+            <p>Top gain-ranked XGBoost features are concatenated with model probability outputs, scaled again, and reshaped for the CNN-LSTM stage.</p>
+          </article>
+          <article class="method-card">
+            <span>04</span>
+            <h2>CNN-LSTM classifier</h2>
+            <p>The neural model uses convolutional layers, recurrent sequence modelling, regularization, and focal loss to address imbalanced attack categories.</p>
+          </article>
+          <article class="method-card">
+            <span>05</span>
+            <h2>Autoencoder anomaly model</h2>
+            <p>The autoencoder learns reconstruction patterns and applies a threshold for binary anomaly decisions, producing separate summary metrics.</p>
+          </article>
+          <article class="method-card">
+            <span>06</span>
+            <h2>Free static deployment</h2>
+            <p>The hosted tester embeds only the final XGBoost model and preprocessing metadata, avoiding paid APIs, hosted databases, or paid inference services.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="split-band reverse">
+        <div>
+          <p class="eyebrow">Artifacts</p>
+          <h2>What the web app consumes</h2>
+          <p class="body-copy">The site copies the final XGBoost JSON, summary metric reports, autoencoder threshold report, preprocessing metadata, and visualisation PNG files into static assets.</p>
+        </div>
+        <div class="artifact-list">
+          <div><strong>xgb_final.json</strong><span>Browser-side multi-class inference</span></div>
+          <div><strong>model_metadata.json</strong><span>Feature order, class labels, and fitted MinMax scaler values</span></div>
+          <div><strong>models_summary_metrics.json</strong><span>Leaderboard and comparison tables</span></div>
+          <div><strong>visualisations/*.png</strong><span>ROC, precision-recall, confidence curves, and confusion matrices</span></div>
+        </div>
+      </section>
+
+      <section class="content-band">
+        <div class="section-heading">
+          <p class="eyebrow">Deployment stance</p>
+          <h2>No paid service dependency</h2>
+        </div>
+        <div class="deploy-grid">
+          <article>
+            <h3>Netlify</h3>
+            <p>Configured with a zero-build `netlify.toml` that publishes the `webapp` directory.</p>
+          </article>
+          <article>
+            <h3>GitHub Pages</h3>
+            <p>The `webapp` folder is static and includes `.nojekyll`, so it can be hosted from a repository branch or docs-style folder.</p>
+          </article>
+          <article>
+            <h3>Cloudflare Pages</h3>
+            <p>No framework adapter is required because the app has no server-side runtime.</p>
+          </article>
+          <article>
+            <h3>Hugging Face Spaces</h3>
+            <p>The same static app can be placed in a Static Space without allocating paid compute.</p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <span>Methodology and deployment notes</span>
+      <span>Static assets only</span>
+    </footer>
+  </body>
+</html>
+
